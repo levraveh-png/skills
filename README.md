@@ -13,6 +13,13 @@ companion skills for branding, design systems, banners, and slides.
 Skill files live under `.claude/skills/` and are auto-discovered by
 Claude Code. See `.claude/skills/ui-ux-pro-max/SKILL.md` for usage.
 
+## frontend-design
+
+Guidance for distinctive, intentional visual design when building or
+reshaping UI — aesthetic direction, typography, and avoiding templated
+defaults. Installed from
+[anthropics/skills](https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md).
+
 ## shadcn-component-discovery / shadcn-component-review
 
 Two skills for [shadcn/ui](https://ui.shadcn.com) work, installed from
