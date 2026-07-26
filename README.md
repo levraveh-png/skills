@@ -29,3 +29,14 @@ The official shadcn MCP server is configured in `.mcp.json` (via
 over registries declared in this project's `components.json`. The
 `shadcn-component-discovery` skill above complements it with awareness
 of registries not yet configured.
+
+## magic MCP server (legacy)
+
+`.mcp.json` also configures `@21st-dev/magic`, from
+[21st-dev/magic-mcp](https://github.com/21st-dev/magic-mcp). Note: the
+maintainers have deprecated this package in favor of the unified
+**21st MCP** (`npx @21st-dev/cli@latest init`) — this entry is kept as
+the legacy stdio compatibility proxy per explicit request. Replace
+`YOUR_21ST_API_KEY` in `.mcp.json` with a fresh key from
+[21st.dev/mcp](https://21st.dev/mcp) — old Magic keys were reset and no
+longer work.
