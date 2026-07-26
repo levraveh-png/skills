@@ -20,6 +20,15 @@ reshaping UI — aesthetic direction, typography, and avoiding templated
 defaults. Installed from
 [anthropics/skills](https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md).
 
+## chrome-devtools
+
+Instructions for using Chrome DevTools via MCP for debugging, browser
+automation, performance analysis, and network inspection. Installed
+from
+[ChromeDevTools/chrome-devtools-mcp](https://github.com/ChromeDevTools/chrome-devtools-mcp/blob/main/skills/chrome-devtools/SKILL.md).
+Requires the `chrome-devtools` MCP server below — the skill just
+describes how to use its tools.
+
 ## shadcn-component-discovery / shadcn-component-review
 
 Two skills for [shadcn/ui](https://ui.shadcn.com) work, installed from
@@ -47,3 +56,12 @@ the legacy stdio compatibility proxy per explicit request. Replace
 `YOUR_21ST_API_KEY` in `.mcp.json` with a fresh key from
 [21st.dev/mcp](https://21st.dev/mcp) — old Magic keys were reset and no
 longer work.
+
+## chrome-devtools MCP server
+
+`.mcp.json` configures `chrome-devtools-mcp`, from
+[ChromeDevTools/chrome-devtools-mcp](https://github.com/ChromeDevTools/chrome-devtools-mcp).
+Launches a persistent Chrome profile on first tool call; no API key
+needed. Pass `--categoryExtensions` or `--memoryDebugging` args for
+extension/memory tooling, or `--slim --headless` for basic browser
+tasks only.

@@ -16,6 +16,13 @@
       "env": {
         "API_KEY_21ST": "YOUR_21ST_API_KEY"
       }
+    },
+    "chrome-devtools": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "chrome-devtools-mcp@latest"
+      ]
     }
   }
 }
