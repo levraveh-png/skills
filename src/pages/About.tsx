@@ -1,10 +1,10 @@
 import { Seo } from "@/components/seo/Seo";
 import { business } from "@/data/business";
 import { breadcrumbSchema } from "@/lib/structured-data";
-import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { PageIntro } from "@/components/PageIntro";
 import { Eyebrow } from "@/components/Eyebrow";
-import { Reveal } from "@/components/Reveal";
+import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
+import { Parallax } from "@/components/motion/Parallax";
 import { Picture } from "@/components/Picture";
 import { ReviewsSection } from "@/components/ReviewsSection";
 import { EstimateCta } from "@/components/EstimateCta";
@@ -38,17 +38,19 @@ export default function About() {
         jsonLd={breadcrumbSchema([{ name: "About", path: "/about" }])}
       />
 
-      <Breadcrumbs items={[{ name: "About", path: "/about" }]} />
-
-      <PageIntro eyebrow="About" title="A local glass and board-up crew, on call.">
+      <PageIntro
+        eyebrow="About"
+        title="A local glass and board-up crew, on call."
+        breadcrumbs={[{ name: "About", path: "/about" }]}
+      >
         AMPM Glass and Board Up is based in {business.address.city},
         handling board-up, glass replacement, storefronts, and frameless
         shower glass across {business.serviceArea.region}.
       </PageIntro>
 
-      <section className="container pb-20 sm:pb-28">
+      <section className="container py-24 sm:py-32">
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
-          <Reveal>
+          <Reveal variant="right">
             <Eyebrow>How we work</Eyebrow>
             <h2 className="mt-4 font-display text-2xl leading-snug text-ink sm:text-3xl">
               Small enough to answer the phone yourself.
@@ -65,34 +67,42 @@ export default function About() {
               We'll always call you back before we arrive, too.
             </p>
           </Reveal>
-          <Reveal delay={100} className="aspect-[4/3] overflow-hidden">
-            <Picture
-              name="glass-detail"
-              alt="Detail of a modern glass building facade"
-              className="h-full w-full object-cover"
-            />
+          <Reveal variant="scale" className="aspect-[4/3] overflow-hidden rounded-sm">
+            <Parallax speed={0.15} className="h-full w-full">
+              <Picture
+                name="glass-detail"
+                alt="Detail of a modern glass building facade"
+                className="h-full w-full object-cover"
+              />
+            </Parallax>
           </Reveal>
         </div>
       </section>
 
-      <section className="border-t border-border bg-stone-100 py-20 sm:py-28">
-        <div className="container">
-          <Reveal className="max-w-xl">
+      <section className="relative overflow-hidden border-t border-border bg-stone-100">
+        <span
+          className="pointer-events-none absolute -right-10 bottom-0 select-none font-display text-[clamp(6rem,16vw,12rem)] leading-none text-ink/[0.04]"
+          aria-hidden="true"
+        >
+          VALUES
+        </span>
+        <div className="container relative py-24 sm:py-32">
+          <Reveal variant="up" className="max-w-xl">
             <Eyebrow>What we hold ourselves to</Eyebrow>
-            <h2 className="mt-4 font-display text-[clamp(1.9rem,3.6vw,2.6rem)] leading-[1.1] text-ink">
+            <h2 className="mt-4 font-display text-[clamp(2rem,4vw,2.9rem)] leading-[1.05] text-ink">
               Nothing complicated — just done right.
             </h2>
           </Reveal>
-          <div className="mt-12 grid gap-x-10 gap-y-10 sm:grid-cols-2">
-            {VALUES.map((value, i) => (
-              <Reveal key={value.title} delay={i * 70} className="border-t border-border pt-6">
+          <RevealGroup as="div" stagger={0.08} className="mt-12 grid gap-x-10 gap-y-10 sm:grid-cols-2">
+            {VALUES.map((value) => (
+              <RevealItem as="div" key={value.title} variant="up" className="border-t border-border pt-6">
                 <h3 className="font-display text-lg text-ink">{value.title}</h3>
                 <p className="mt-2.5 text-[14.5px] leading-relaxed text-muted-foreground">
                   {value.body}
                 </p>
-              </Reveal>
+              </RevealItem>
             ))}
-          </div>
+          </RevealGroup>
         </div>
       </section>
 

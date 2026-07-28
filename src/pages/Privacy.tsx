@@ -1,7 +1,7 @@
 import { Seo } from "@/components/seo/Seo";
 import { business } from "@/data/business";
-import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { PageIntro } from "@/components/PageIntro";
+import { Reveal } from "@/components/motion/Reveal";
 
 export default function Privacy() {
   return (
@@ -11,12 +11,16 @@ export default function Privacy() {
         description={`How ${business.name} collects, uses, and protects your information.`}
         path="/privacy"
       />
-      <Breadcrumbs items={[{ name: "Privacy Policy", path: "/privacy" }]} />
-      <PageIntro eyebrow="Legal" title="Privacy Policy">
+      <PageIntro
+        eyebrow="Legal"
+        title="Privacy Policy"
+        breadcrumbs={[{ name: "Privacy Policy", path: "/privacy" }]}
+        compact
+      >
         Last updated {new Date().toLocaleDateString("en-US", { year: "numeric", month: "long" })}
       </PageIntro>
 
-      <div className="container max-w-2xl pb-20 sm:pb-28">
+      <Reveal variant="up" className="container max-w-2xl py-20 sm:py-28">
         <div className="space-y-8 text-[15px] leading-relaxed text-muted-foreground">
           <section>
             <h2 className="font-display text-xl text-ink">Information we collect</h2>
@@ -68,7 +72,7 @@ export default function Privacy() {
             </p>
           </section>
         </div>
-      </div>
+      </Reveal>
     </>
   );
 }

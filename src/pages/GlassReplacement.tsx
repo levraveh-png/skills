@@ -6,9 +6,11 @@ import {
   faqSchema,
   serviceSchema,
 } from "@/lib/structured-data";
-import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Eyebrow } from "@/components/Eyebrow";
-import { Reveal } from "@/components/Reveal";
+import { Reveal } from "@/components/motion/Reveal";
+import { Magnetic } from "@/components/motion/Magnetic";
+import { Parallax } from "@/components/motion/Parallax";
+import { SplitText } from "@/components/motion/SplitText";
 import { Button } from "@/components/ui/button";
 import { Picture } from "@/components/Picture";
 import { FaqAccordion } from "@/components/FaqAccordion";
@@ -61,51 +63,81 @@ export default function GlassReplacement() {
         ]}
       />
 
-      <Breadcrumbs items={[{ name: "Glass Replacement", path: "/glass-replacement" }]} />
+      <section className="relative overflow-hidden bg-ink text-stone-50">
+        <div
+          className="pointer-events-none absolute right-0 top-1/3 h-[500px] w-[500px] translate-x-1/3 opacity-20 blur-[110px]"
+          style={{ background: "radial-gradient(circle, #9C5F35 0%, transparent 70%)" }}
+          aria-hidden="true"
+        />
+        <div className="absolute inset-0 bg-grain opacity-[0.04] mix-blend-overlay" aria-hidden="true" />
+        <span
+          className="pointer-events-none absolute -left-6 bottom-0 select-none font-display text-[clamp(6rem,16vw,12rem)] leading-none text-stroke-copper text-transparent opacity-[0.14]"
+          aria-hidden="true"
+        >
+          GLASS
+        </span>
 
-      <section className="bg-stone-100">
-        <div className="container grid gap-10 py-16 sm:py-24 lg:grid-cols-2 lg:items-center">
-          <Reveal>
-            <Eyebrow>Glass replacement</Eyebrow>
-            <h1 className="mt-4 font-display text-[clamp(2.2rem,4.8vw,3.5rem)] leading-[1.06] text-ink">
-              Glass replaced right, storefront to shower.
-            </h1>
-            <p className="mt-5 max-w-md text-lg leading-relaxed text-muted-foreground">
-              From a cracked storefront pane to a new frameless shower
-              enclosure, glass gets measured, cut, and installed to fit the
-              space it's going into.
-            </p>
-            <div className="mt-8 flex flex-col gap-3.5 sm:flex-row">
-              <Button asChild size="lg" variant="primary">
-                <a href="/contact">
-                  Get a Free Estimate
-                  <ArrowRight className="h-4 w-4" />
-                </a>
-              </Button>
-              <Button asChild size="lg" variant="outline">
-                <a href={business.phone.href}>
-                  <Phone className="h-4 w-4 text-copper-500" />
-                  {business.phone.display}
-                </a>
-              </Button>
-            </div>
-          </Reveal>
-          <Reveal delay={100} className="aspect-[4/3] overflow-hidden">
-            <Picture
-              name="glass-interior-detail"
-              alt="Large black-framed glass windows in a modern interior"
-              className="h-full w-full object-cover"
-              loading="eager"
-            />
-          </Reveal>
+        <div className="container relative">
+          <nav aria-label="Breadcrumb" className="pt-32 text-xs text-stone-50/45">
+            <span>Home</span> <span className="mx-1.5">/</span>{" "}
+            <span className="text-stone-50/80">Glass Replacement</span>
+          </nav>
+
+          <div className="grid gap-10 pb-24 pt-8 sm:pb-32 lg:grid-cols-2 lg:items-center">
+            <Reveal variant="scale" className="order-2 aspect-[4/3] overflow-hidden rounded-sm lg:order-1">
+              <Parallax speed={0.12} className="h-full w-full">
+                <Picture
+                  name="glass-interior-detail"
+                  alt="Large black-framed glass windows in a modern interior"
+                  className="h-full w-full object-cover"
+                  loading="eager"
+                />
+              </Parallax>
+            </Reveal>
+
+            <Reveal variant="up" className="order-1 lg:order-2">
+              <Eyebrow light>Glass replacement</Eyebrow>
+              <h1 className="mt-4 font-display text-[clamp(2.4rem,5vw,3.75rem)] font-medium leading-[1.0]">
+                <SplitText text="Glass replaced right," />
+                <br />
+                <span className="italic font-editorial text-copper-300">
+                  <SplitText text="storefront" delay={0.2} />
+                </span>{" "}
+                <SplitText text="to shower." delay={0.35} />
+              </h1>
+              <p className="mt-5 max-w-md text-lg leading-relaxed text-stone-50/70">
+                From a cracked storefront pane to a new frameless shower
+                enclosure, glass gets measured, cut, and installed to fit the
+                space it's going into.
+              </p>
+              <div className="mt-8 flex flex-col gap-3.5 sm:flex-row">
+                <Magnetic>
+                  <Button asChild size="lg" variant="accent">
+                    <a href="/contact">
+                      Get a Free Estimate
+                      <ArrowRight className="size-4" />
+                    </a>
+                  </Button>
+                </Magnetic>
+                <Magnetic>
+                  <Button asChild size="lg" variant="outline-light">
+                    <a href={business.phone.href}>
+                      <Phone className="size-4" />
+                      {business.phone.display}
+                    </a>
+                  </Button>
+                </Magnetic>
+              </div>
+            </Reveal>
+          </div>
         </div>
       </section>
 
-      <section className="container py-20 sm:py-28">
+      <section className="container py-24 sm:py-32">
         <div className="grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
-          <Reveal>
+          <Reveal variant="right">
             <Eyebrow>General glass replacement</Eyebrow>
-            <h2 className="mt-4 font-display text-[clamp(1.8rem,3.4vw,2.4rem)] leading-[1.15] text-ink">
+            <h2 className="mt-4 font-display text-[clamp(1.9rem,3.6vw,2.5rem)] leading-[1.12] text-ink">
               Cracked, broken, or foggy glass, replaced.
             </h2>
             <p className="mt-4 text-[15px] leading-relaxed text-muted-foreground">
@@ -115,28 +147,32 @@ export default function GlassReplacement() {
               matched to the existing thickness and frame wherever possible.
             </p>
           </Reveal>
-          <Reveal delay={100} className="aspect-video overflow-hidden lg:aspect-auto">
-            <Picture
-              name="glass-detail"
-              alt="Detail of a modern glass building facade"
-              className="h-full w-full object-cover"
-            />
+          <Reveal variant="scale" delay={0.1} className="aspect-video overflow-hidden rounded-sm lg:aspect-auto">
+            <Parallax speed={0.12} className="h-full w-full">
+              <Picture
+                name="glass-detail"
+                alt="Detail of a modern glass building facade"
+                className="h-full w-full object-cover"
+              />
+            </Parallax>
           </Reveal>
         </div>
       </section>
 
-      <section id="storefronts" className="border-t border-border bg-stone-100 py-20 sm:py-28 scroll-mt-20">
+      <section id="storefronts" className="border-t border-border bg-stone-100 py-24 sm:py-32 scroll-mt-24">
         <div className="container grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-16">
-          <Reveal className="order-2 aspect-[4/3] overflow-hidden lg:order-1">
-            <Picture
-              name="glass-hero"
-              alt="Storefront glass windows in a commercial brick building"
-              className="h-full w-full object-cover"
-            />
+          <Reveal variant="scale" className="order-2 aspect-[4/3] overflow-hidden rounded-sm lg:order-1">
+            <Parallax speed={0.12} className="h-full w-full">
+              <Picture
+                name="glass-hero"
+                alt="Storefront glass windows in a commercial brick building"
+                className="h-full w-full object-cover"
+              />
+            </Parallax>
           </Reveal>
-          <Reveal delay={100} className="order-1 lg:order-2">
+          <Reveal variant="left" delay={0.1} className="order-1 lg:order-2">
             <Eyebrow>Storefronts</Eyebrow>
-            <h2 className="mt-4 font-display text-[clamp(1.8rem,3.4vw,2.4rem)] leading-[1.15] text-ink">
+            <h2 className="mt-4 font-display text-[clamp(1.9rem,3.6vw,2.5rem)] leading-[1.12] text-ink">
               New storefront glass, installed and sealed properly.
             </h2>
             <p className="mt-4 max-w-md text-[15px] leading-relaxed text-muted-foreground">
@@ -148,11 +184,11 @@ export default function GlassReplacement() {
         </div>
       </section>
 
-      <section id="frameless-shower" className="py-20 sm:py-28 scroll-mt-20">
+      <section id="frameless-shower" className="py-24 sm:py-32 scroll-mt-24">
         <div className="container grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-16">
-          <Reveal>
+          <Reveal variant="right">
             <Eyebrow>Frameless shower glass</Eyebrow>
-            <h2 className="mt-4 font-display text-[clamp(1.8rem,3.4vw,2.4rem)] leading-[1.15] text-ink">
+            <h2 className="mt-4 font-display text-[clamp(1.9rem,3.6vw,2.5rem)] leading-[1.12] text-ink">
               A custom fit, not a stock size.
             </h2>
             <p className="mt-4 max-w-md text-[15px] leading-relaxed text-muted-foreground">
@@ -161,21 +197,23 @@ export default function GlassReplacement() {
               and glass thickness are chosen to suit the space.
             </p>
           </Reveal>
-          <Reveal delay={100} className="aspect-[4/3] overflow-hidden">
-            <Picture
-              name="frameless-shower"
-              alt="Modern frameless glass shower enclosure with tile"
-              className="h-full w-full object-cover"
-            />
+          <Reveal variant="scale" delay={0.1} className="aspect-[4/3] overflow-hidden rounded-sm">
+            <Parallax speed={0.12} className="h-full w-full">
+              <Picture
+                name="frameless-shower"
+                alt="Modern frameless glass shower enclosure with tile"
+                className="h-full w-full object-cover"
+              />
+            </Parallax>
           </Reveal>
         </div>
       </section>
 
-      <section id="faq" className="border-t border-border bg-stone-100 py-20 sm:py-28 scroll-mt-20">
+      <section id="faq" className="border-t border-border bg-stone-100 py-24 sm:py-32 scroll-mt-24">
         <div className="container">
-          <Reveal className="max-w-xl">
+          <Reveal variant="up" className="max-w-xl">
             <Eyebrow>Questions</Eyebrow>
-            <h2 className="mt-4 font-display text-[clamp(1.9rem,3.6vw,2.6rem)] leading-[1.1] text-ink">
+            <h2 className="mt-4 font-display text-[clamp(2rem,4vw,2.9rem)] leading-[1.05] text-ink">
               Glass replacement, answered plainly.
             </h2>
           </Reveal>

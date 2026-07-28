@@ -107,7 +107,7 @@ export function EstimateForm() {
   if (status === "success") {
     return (
       <div className="flex flex-col items-start gap-3 border border-copper-500/30 bg-copper-50 p-8">
-        <CheckCircle2 className="h-8 w-8 text-copper-600" />
+        <CheckCircle2 className="size-8 text-copper-600" />
         <h3 className="font-display text-xl text-ink">Request sent</h3>
         <p className="text-[15px] leading-relaxed text-muted-foreground">
           {business.formEndpoint
@@ -253,7 +253,7 @@ export function EstimateForm() {
           type="checkbox"
           checked={values.consent}
           onChange={(e) => update("consent", e.target.checked)}
-          className="mt-1 h-4 w-4 shrink-0 border-input accent-copper-500"
+          className="mt-1 size-4 shrink-0 border-input accent-copper-500"
           aria-describedby={errors.consent ? "consent-error" : undefined}
         />
         <label htmlFor="consent" className="text-[13.5px] leading-relaxed text-muted-foreground">
@@ -266,7 +266,7 @@ export function EstimateForm() {
 
       {status === "error" && (
         <p className="flex items-center gap-2 text-sm text-destructive">
-          <AlertCircle className="h-4 w-4" />
+          <AlertCircle className="size-4" />
           Something went wrong sending your request — please call us instead.
         </p>
       )}

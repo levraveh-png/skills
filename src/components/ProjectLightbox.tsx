@@ -55,27 +55,27 @@ export function ProjectLightbox({ projects, index, onIndexChange }: ProjectLight
               <button
                 type="button"
                 onClick={() => onIndexChange((index! - 1 + projects.length) % projects.length)}
-                className="absolute left-0 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center text-stone-50/70 hover:text-stone-50 sm:left-4"
+                className="absolute left-0 top-1/2 flex size-11 -translate-y-1/2 items-center justify-center text-stone-50/70 hover:text-stone-50 sm:left-4"
                 aria-label="Previous project"
               >
-                <ChevronLeft className="h-7 w-7" />
+                <ChevronLeft className="size-7" />
               </button>
               <button
                 type="button"
                 onClick={() => onIndexChange((index! + 1) % projects.length)}
-                className="absolute right-0 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center text-stone-50/70 hover:text-stone-50 sm:right-4"
+                className="absolute right-0 top-1/2 flex size-11 -translate-y-1/2 items-center justify-center text-stone-50/70 hover:text-stone-50 sm:right-4"
                 aria-label="Next project"
               >
-                <ChevronRight className="h-7 w-7" />
+                <ChevronRight className="size-7" />
               </button>
             </>
           )}
 
           <DialogPrimitive.Close
-            className="absolute right-4 top-4 flex h-11 w-11 items-center justify-center text-stone-50/70 hover:text-stone-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-copper-400"
+            className="absolute right-4 top-4 flex size-11 items-center justify-center text-stone-50/70 hover:text-stone-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-copper-400"
             aria-label="Close"
           >
-            <X className="h-6 w-6" />
+            <X className="size-6" />
           </DialogPrimitive.Close>
         </DialogPrimitive.Content>
       </DialogPrimitive.Portal>

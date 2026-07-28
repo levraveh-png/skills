@@ -1,7 +1,10 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Plus } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Eyebrow } from "@/components/Eyebrow";
-import { Reveal } from "@/components/Reveal";
+import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
+import { EASE_PREMIUM } from "@/lib/motion";
 
 const ITEMS = [
   {
@@ -27,35 +30,73 @@ const ITEMS = [
 ];
 
 export function GoodToKnow() {
+  const [open, setOpen] = useState<number | null>(0);
+
   return (
-    <section className="border-t border-border bg-stone-100 py-20 sm:py-28">
+    <section className="border-t border-border bg-stone-100 py-24 sm:py-32">
       <div className="container">
-        <Reveal className="max-w-xl">
+        <Reveal variant="up" className="max-w-xl">
           <Eyebrow>Good to know</Eyebrow>
-          <h2 className="mt-4 font-display text-[clamp(1.9rem,3.6vw,2.75rem)] leading-[1.1] text-ink">
+          <h2 className="mt-4 font-display text-[clamp(2rem,4.4vw,3.4rem)] leading-[1.04] text-ink">
             A few things worth knowing before you call.
           </h2>
         </Reveal>
 
-        <div className="mt-12 grid gap-x-10 gap-y-10 sm:grid-cols-2">
-          {ITEMS.map((item, i) => (
-            <Reveal key={item.title} delay={i * 70} className="border-t border-border pt-6">
-              <h3 className="font-display text-lg leading-snug text-ink">
-                {item.title}
-              </h3>
-              <p className="mt-2.5 text-[14.5px] leading-relaxed text-muted-foreground">
-                {item.body}
-              </p>
-              <Link
-                to={item.to}
-                className="mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-copper-600 hover:text-copper-700"
-              >
-                Read more
-                <ArrowRight className="h-3.5 w-3.5" />
-              </Link>
-            </Reveal>
-          ))}
-        </div>
+        <RevealGroup as="div" stagger={0.06} className="mt-14 max-w-3xl">
+          {ITEMS.map((item, i) => {
+            const isOpen = open === i;
+            return (
+              <RevealItem as="div" key={item.title} variant="up" className="border-t border-border">
+                <button
+                  type="button"
+                  onClick={() => setOpen(isOpen ? null : i)}
+                  className="flex w-full items-start justify-between gap-6 py-7 text-left"
+                  aria-expanded={isOpen}
+                >
+                  <div className="flex gap-5">
+                    <span className="font-display text-lg text-copper-500">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <h3 className="font-display text-xl leading-snug text-ink sm:text-2xl">
+                      {item.title}
+                    </h3>
+                  </div>
+                  <motion.span
+                    animate={{ rotate: isOpen ? 45 : 0 }}
+                    transition={{ duration: 0.3, ease: EASE_PREMIUM }}
+                    className="mt-1 shrink-0 text-copper-500"
+                  >
+                    <Plus className="size-5" />
+                  </motion.span>
+                </button>
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.4, ease: EASE_PREMIUM }}
+                      className="overflow-hidden"
+                    >
+                      <div className="max-w-xl pb-8 pl-[2.9rem]">
+                        <p className="text-[15px] leading-relaxed text-muted-foreground">
+                          {item.body}
+                        </p>
+                        <Link
+                          to={item.to}
+                          className="mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-copper-600 hover:text-copper-700"
+                        >
+                          Read more
+                          <ArrowRight className="h-3.5 w-3.5" />
+                        </Link>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </RevealItem>
+            );
+          })}
+        </RevealGroup>
       </div>
     </section>
   );

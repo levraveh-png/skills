@@ -1,10 +1,9 @@
 import { useState } from "react";
 import { Seo } from "@/components/seo/Seo";
 import { breadcrumbSchema } from "@/lib/structured-data";
-import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { PageIntro } from "@/components/PageIntro";
 import { Picture } from "@/components/Picture";
-import { Reveal } from "@/components/Reveal";
+import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { ProjectLightbox } from "@/components/ProjectLightbox";
 import { EstimateCta } from "@/components/EstimateCta";
 import { projects } from "@/data/projects";
@@ -21,20 +20,26 @@ export default function Projects() {
         jsonLd={breadcrumbSchema([{ name: "Projects", path: "/projects" }])}
       />
 
-      <Breadcrumbs items={[{ name: "Projects", path: "/projects" }]} />
-
-      <PageIntro eyebrow="Projects" title="The work, in a few photos.">
+      <PageIntro
+        eyebrow="Projects"
+        title="The work, in a few photos."
+        breadcrumbs={[{ name: "Projects", path: "/projects" }]}
+      >
         Photos below are representative of our services while we put
         together a gallery of real completed jobs — check back as it grows.
       </PageIntro>
 
-      <div className="container pb-20 sm:pb-28">
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:grid-rows-2">
+      <div className="container py-24 sm:py-32">
+        <RevealGroup
+          as="div"
+          stagger={0.1}
+          className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:grid-rows-2"
+        >
           {projects.map((project, i) => (
-            <Reveal
-              key={project.title}
+            <RevealItem
               as="button"
-              delay={i * 70}
+              variant="scale"
+              key={project.title}
               onClick={() => setActiveIndex(i)}
               className={
                 "group relative block overflow-hidden bg-stone-200 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-copper-500 " +
@@ -57,9 +62,9 @@ export default function Projects() {
                   {project.title}
                 </p>
               </div>
-            </Reveal>
+            </RevealItem>
           ))}
-        </div>
+        </RevealGroup>
       </div>
 
       <ProjectLightbox

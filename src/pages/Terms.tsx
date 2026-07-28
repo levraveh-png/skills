@@ -1,7 +1,7 @@
 import { Seo } from "@/components/seo/Seo";
 import { business } from "@/data/business";
-import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { PageIntro } from "@/components/PageIntro";
+import { Reveal } from "@/components/motion/Reveal";
 
 export default function Terms() {
   return (
@@ -11,12 +11,16 @@ export default function Terms() {
         description={`The terms that apply to using the ${business.name} website.`}
         path="/terms"
       />
-      <Breadcrumbs items={[{ name: "Terms of Service", path: "/terms" }]} />
-      <PageIntro eyebrow="Legal" title="Terms of Service">
+      <PageIntro
+        eyebrow="Legal"
+        title="Terms of Service"
+        breadcrumbs={[{ name: "Terms of Service", path: "/terms" }]}
+        compact
+      >
         Last updated {new Date().toLocaleDateString("en-US", { year: "numeric", month: "long" })}
       </PageIntro>
 
-      <div className="container max-w-2xl pb-20 sm:pb-28">
+      <Reveal variant="up" className="container max-w-2xl py-20 sm:py-28">
         <div className="space-y-8 text-[15px] leading-relaxed text-muted-foreground">
           <section>
             <h2 className="font-display text-xl text-ink">Use of this site</h2>
@@ -67,7 +71,7 @@ export default function Terms() {
             </p>
           </section>
         </div>
-      </div>
+      </Reveal>
     </>
   );
 }

@@ -22,8 +22,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ["Inter", "system-ui", "sans-serif"],
-        display: ["Fraunces", "Georgia", "serif"],
+        sans: ["'Inter Variable'", "Inter", "system-ui", "sans-serif"],
+        display: ["'Fraunces Variable'", "Fraunces", "Georgia", "serif"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -64,18 +64,22 @@ export default {
           500: "#A5937A",
         },
         ink: {
-          DEFAULT: "#1C1B19",
+          DEFAULT: "#151412",
+          700: "#201E1A",
           800: "#26241F",
-          900: "#171613",
+          900: "#100F0D",
+          950: "#0A0908",
         },
         copper: {
           50: "#F7ECE3",
           100: "#EFD9C6",
+          200: "#E2BE9C",
           300: "#C99368",
           400: "#B27A4C",
           500: "#9C5F35",
           600: "#7E4B29",
           700: "#5F3820",
+          800: "#432714",
         },
       },
       borderRadius: {
@@ -87,14 +91,14 @@ export default {
         prose: "68ch",
       },
       boxShadow: {
-        soft: "0 1px 2px rgba(23, 22, 19, 0.04), 0 8px 24px -12px rgba(23, 22, 19, 0.15)",
-        lifted: "0 20px 60px -20px rgba(23, 22, 19, 0.35)",
+        soft: "0 1px 2px rgba(10, 9, 8, 0.04), 0 8px 24px -12px rgba(10, 9, 8, 0.15)",
+        lifted: "0 30px 80px -24px rgba(10, 9, 8, 0.45)",
+        glow: "0 0 120px -20px rgba(156, 95, 53, 0.35)",
+      },
+      backgroundImage: {
+        grain: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E\")",
       },
       keyframes: {
-        "fade-up": {
-          "0%": { opacity: "0", transform: "translateY(14px)" },
-          "100%": { opacity: "1", transform: "translateY(0)" },
-        },
         "fade-in": {
           "0%": { opacity: "0" },
           "100%": { opacity: "1" },
@@ -107,12 +111,25 @@ export default {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        marquee: {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
+        "spin-slow": {
+          "0%": { transform: "rotate(0deg)" },
+          "100%": { transform: "rotate(360deg)" },
+        },
       },
       animation: {
-        "fade-up": "fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both",
         "fade-in": "fade-in 0.6s ease-out both",
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        marquee: "marquee 32s linear infinite",
+        "spin-slow": "spin-slow 20s linear infinite",
+      },
+      transitionTimingFunction: {
+        premium: "cubic-bezier(0.16, 1, 0.3, 1)",
+        snap: "cubic-bezier(0.65, 0, 0.35, 1)",
       },
     },
   },
