@@ -1,0 +1,110 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 40 30% 96%;
+    --foreground: 40 12% 8%;
+
+    --card: 40 33% 98%;
+    --card-foreground: 40 12% 8%;
+
+    --popover: 40 33% 98%;
+    --popover-foreground: 40 12% 8%;
+
+    --primary: 25 49% 38%;
+    --primary-foreground: 40 33% 97%;
+
+    --secondary: 40 14% 91%;
+    --secondary-foreground: 40 12% 8%;
+
+    --muted: 40 16% 91%;
+    --muted-foreground: 40 8% 36%;
+
+    --accent: 40 20% 88%;
+    --accent-foreground: 40 12% 8%;
+
+    --destructive: 4 62% 42%;
+    --destructive-foreground: 40 33% 97%;
+
+    --border: 40 15% 84%;
+    --input: 40 15% 84%;
+    --ring: 25 49% 38%;
+
+    --radius: 0.25rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  html.lenis {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: "Inter Variable", system-ui, sans-serif;
+    font-feature-settings: "cv11", "ss01";
+  }
+
+  h1, h2, h3, h4 {
+    font-family: "Fraunces Variable", Georgia, serif;
+    font-weight: 480;
+    letter-spacing: -0.01em;
+    font-variation-settings: "opsz" 72, "SOFT" 0, "WONK" 0;
+  }
+
+  :focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background: rgba(156, 95, 53, 0.24);
+  }
+}
+
+@layer utilities {
+  .balance {
+    text-wrap: balance;
+  }
+
+  .font-editorial {
+    font-variation-settings: "opsz" 144, "SOFT" 24, "WONK" 1;
+  }
+
+  .text-stroke-copper {
+    -webkit-text-stroke: 1px rgba(156, 95, 53, 0.6);
+  }
+
+  .mask-fade-b {
+    mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+  }
+
+  .scrollbar-none {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
