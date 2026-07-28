@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 40 30% 96%;
+    --foreground: 40 12% 11%;
+
+    --card: 40 33% 98%;
+    --card-foreground: 40 12% 11%;
+
+    --popover: 40 33% 98%;
+    --popover-foreground: 40 12% 11%;
+
+    --primary: 25 49% 38%;
+    --primary-foreground: 40 33% 97%;
+
+    --secondary: 40 14% 91%;
+    --secondary-foreground: 40 12% 11%;
+
+    --muted: 40 16% 91%;
+    --muted-foreground: 40 8% 38%;
+
+    --accent: 40 20% 88%;
+    --accent-foreground: 40 12% 11%;
+
+    --destructive: 4 62% 42%;
+    --destructive-foreground: 40 33% 97%;
+
+    --border: 40 15% 84%;
+    --input: 40 15% 84%;
+    --ring: 25 49% 38%;
+
+    --radius: 0.25rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: "Inter", system-ui, sans-serif;
+    font-feature-settings: "cv11", "ss01";
+  }
+
+  h1, h2, h3, h4 {
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+
+  :focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background: hsl(var(--primary) / 0.18);
+  }
+}
+
+@layer utilities {
+  .balance {
+    text-wrap: balance;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
